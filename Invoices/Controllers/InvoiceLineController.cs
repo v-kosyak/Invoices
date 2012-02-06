@@ -8,6 +8,41 @@ namespace Invoices.Controllers
 {
     public class InvoiceLineController : InvoicesBaseController
     {
+        private IEnumerable<Product> _products;
+
+        private IEnumerable<Product> CachedProducts
+        {
+            get
+            {
+                if (Cache == null)
+                    return null;
+
+                return Cache["Products"] as IEnumerable<Product>;
+            }
+            set { Cache["Products"] = value; }
+        }
+        
+        public IEnumerable<Product> Products
+        {
+            get
+            {
+                if (_products == null)
+                {
+                    if (CachedProducts == null)
+                        CachedProducts = Repository.GetAllProducts();
+                    _products = CachedProducts;
+                }
+
+                if (Invoice == null)
+                    return _products;
+                else
+                {
+                    var exceptions = Invoice.Lines.Select(line => line.ProductId);
+                    return _products.Where(p => !exceptions.Contains(p.Number));
+                }
+            }
+        }
+
         //
         // GET: /InvoiceLine/
         
@@ -35,41 +70,6 @@ namespace Invoices.Controllers
             }
             ViewData["Products"] = GetProductSelectListItems();
             return View(model);
-        }
-
-        private IEnumerable<Product> _products;
-
-        private IEnumerable<Product> CachedProducts
-        {
-            get
-            {
-                if (Cache == null)
-                    return null;
-
-                return Cache["Products"] as IEnumerable<Product>;
-            }
-            set { Cache["Products"] = value; }
-        }
-
-        public IEnumerable<Product> Products
-        {
-            get
-            {
-                if (_products == null)
-                {
-                    if (CachedProducts == null)
-                        CachedProducts = Repository.GetAllProducts();
-                    _products = CachedProducts;
-                }
-
-                if (Invoice == null)
-                    return _products;
-                else
-                {
-                    var exceptions = Invoice.Lines.Select(line => line.ProductId);
-                    return _products.Where(p => !exceptions.Contains(p.Number));
-                }
-            }
         }
 
         private IEnumerable<SelectListItem> GetProductSelectListItems()

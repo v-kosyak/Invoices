@@ -38,7 +38,6 @@ namespace Invoices.Controllers
             {
                 if (MembershipService.ValidateUser(model.UserName, model.Password))
                 {
-                    //Service.SignIn(model.UserName, model.RememberMe);
                     Service.SignIn(model);
                     if (!String.IsNullOrEmpty(returnUrl))
                     {

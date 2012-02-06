@@ -18,26 +18,6 @@ namespace Invoices.Controllers
             return RedirectToAction("Create");
         }
 
-        private void InitializeCreate(string customerId)
-        {
-            var customer = Customers.SingleOrDefault(cust => cust.Number == customerId);
-
-            ViewData.Add("Customers", CustomerSelectListItems);
-
-            if (customer != null)
-            {
-                Invoice.CustomerId = customer.Number;
-                Invoice.CustomerAddress = customer.Address;
-            }
-            else
-            {
-                Invoice.CustomerId = null;
-                Invoice.CustomerAddress = null;
-            }
-
-            ViewData.Model = Invoice;
-        }
-
         public ActionResult Create(string customerId = null)
         {
             InitializeCreate(customerId);
@@ -114,6 +94,26 @@ namespace Invoices.Controllers
                     yield return item;
                 }
             }
+        }
+
+        private void InitializeCreate(string customerId)
+        {
+            var customer = Customers.SingleOrDefault(cust => cust.Number == customerId);
+
+            ViewData.Add("Customers", CustomerSelectListItems);
+
+            if (customer != null)
+            {
+                Invoice.CustomerId = customer.Number;
+                Invoice.CustomerAddress = customer.Address;
+            }
+            else
+            {
+                Invoice.CustomerId = null;
+                Invoice.CustomerAddress = null;
+            }
+
+            ViewData.Model = Invoice;
         }
     }
 }
