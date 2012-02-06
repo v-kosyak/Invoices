@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="Local" id="fedb5893-f3a6-429d-bc49-64b13918fa64" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>These are default test settings for a local test run.</Description>
+  <Execution>
+    <TestTypeSpecific>
+      <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+        <AssemblyResolution>
+          <TestDirectory useLoadContext="true" />
+        </AssemblyResolution>
+      </UnitTestRunConfig>
+    </TestTypeSpecific>
+    <AgentRule name="LocalMachineDefaultRole">
+      <DataCollectors>
+        <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage">
+          <Configuration>
+            <CodeCoverage xmlns="">
+              <Regular>
+                <CodeCoverageItem binaryFile="Invoices.Api\bin\Debug\Invoices.Api.dll" pdbFile="Invoices.Api\bin\Debug\Invoices.Api.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Invoices.Models\bin\Debug\Invoices.Models.dll" pdbFile="Invoices.Models\bin\Debug\Invoices.Models.pdb" instrumentInPlace="true" />
+              </Regular>
+              <AspNet>
+                <AspNetCodeCoverageItem id="5b777364-85ea-4fdf-8963-a3aa33e49fc9" name="Invoices" applicationRoot="/" url="http://localhost:0/" />
+              </AspNet>
+            </CodeCoverage>
+          </Configuration>
+        </DataCollector>
+      </DataCollectors>
+    </AgentRule>
+  </Execution>
+</TestSettings>
