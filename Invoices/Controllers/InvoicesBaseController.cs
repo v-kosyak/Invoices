@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using System.Web.Routing;
 using Invoices.Models;
 
@@ -8,9 +9,31 @@ namespace Invoices.Controllers
     [Authorize]
     public abstract class InvoicesBaseController : Controller
     {
+        private readonly Cached<Invoice> _cachedInvoice;
+        private readonly Cached<IEnumerable<Product>> _cachedProducts;
+
+        protected IEnumerable<Product> CachedProducts
+        {
+            get
+            {
+                return _cachedProducts.Value;
+            }
+            set
+            {
+                _cachedProducts.Value = value;
+            }
+        }
+
         public ICache Cache { get; set; }
         public IAuthenticationService AuthenticationService { get; set; }
         public IRepository Repository { get; set; }
+
+        protected InvoicesBaseController()
+        {
+            _cachedInvoice = new Cached<Invoice>(() => Cache, () => new Invoice());
+            _cachedProducts = new Cached<IEnumerable<Product>>(() => Cache, () => Repository.GetAllProducts())
+                                  {Name = "Products"};
+        }
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -22,25 +45,19 @@ namespace Invoices.Controllers
 
         protected void ClearCache()
         {
-            Invoice = null;
-            Cache["Products"] = null;
+            _cachedInvoice.Clear();
+            _cachedProducts.Clear();
         }
 
         public Invoice Invoice
         {
             get { 
-                if (Cache == null)
-                    return null;
-
-                var cachedInvoice = Cache["Invoice"] as Invoice;
-                if (cachedInvoice == null)
-                {
-                    cachedInvoice = Invoice = new Invoice();
-                }
-
-                return cachedInvoice;
+                return _cachedInvoice.Value;
             }
-            set { Cache["Invoice"] = value; }
+            set
+            {
+                _cachedInvoice.Value = value;
+            }
         }
     }
 }

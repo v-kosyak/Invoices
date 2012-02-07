@@ -38,15 +38,17 @@ namespace Invoices.Tests.Controllers
         public void AddProductRedirectsToInvoiceCreateIfModelValid()
         {
             //Arange
-            var sut = new InvoiceLineController();
+            CacheMock.SetupGet(cache => cache["Invoice"]).Returns(new Invoice {CustomerId = "8"});
+            var sut = new InvoiceLineController{Cache = CacheMock.Object};
 
             //Act
-            var actual = sut.AddProduct(new InvoiceLine()) as RedirectToRouteResult;
+            var actual = sut.AddProduct(new InvoiceLine{ProductId = "1"}) as RedirectToRouteResult;
 
             //Assert
             Assert.IsNotNull(actual);
             Assert.AreEqual("Create",actual.RouteValues["action"]);
             Assert.AreEqual("Invoice", actual.RouteValues["controller"]);
+            Assert.AreEqual("8", actual.RouteValues["CustomerId"]);
         }
 
         [TestMethod]
@@ -141,7 +143,6 @@ namespace Invoices.Tests.Controllers
 
             CacheMock.VerifySet(cache => cache["Products"] = expectedProducts);
 
-            CollectionAssert.AreEqual(actual1.ToArray(), expectedProducts);
             CollectionAssert.AreEqual(actual1.ToArray(), actual2.ToArray());
         }
     }
