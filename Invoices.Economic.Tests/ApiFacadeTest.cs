@@ -184,7 +184,7 @@ namespace Invoices.Api.Tests
 
         [TestMethod]
         [ExpectedException(typeof(AuthenticationException))]
-        public void SessionConnectsBeforeAnyUse()
+        public void SessionIsNotUsableIfNotConnected()
         {
             //Arrange
             SessionMock.Setup(session => session.Connect(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>())).Throws(new Exception());
@@ -193,6 +193,23 @@ namespace Invoices.Api.Tests
 
             //Act
             var actual = sut.Session;
+        }
+
+        [TestMethod]
+        public void SessionConnectsOnlyOnce()
+        {
+            //Arrange
+            SessionMock.Setup(session => session.Connect(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>())).Returns("connection");
+
+            var sut = new Facade { Session = SessionMock.Object, Authentication = new Mock<IAuthenticationService>().Object };
+
+            //Act
+            var actual = sut.Session;
+            actual = sut.Session;
+
+            //Assert
+            SessionMock.Verify(session => session.Connect(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>()),
+                               Times.Once());
         }
 
     }

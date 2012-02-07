@@ -10,6 +10,7 @@ namespace Invoices.Api
 {
     public class Facade: IMembershipService, IRepository
     {
+        private bool _connected;
         private ISession _session;
 
         private ISession _Session
@@ -28,11 +29,12 @@ namespace Invoices.Api
         { 
             get
             {
-                if (Authentication != null)
+                if (Authentication != null && !_connected)
                     try
                     {
-                        _Session.Connect(Properties.Settings.Default.ProjectId, Authentication.UserName,
-                                         Authentication.Password);
+                        var sessionId = _Session.Connect(Properties.Settings.Default.ProjectId, Authentication.UserName,
+                                                         Authentication.Password);
+                        _connected = !String.IsNullOrEmpty(sessionId);
                     }
                     catch(Exception e)
                     {
