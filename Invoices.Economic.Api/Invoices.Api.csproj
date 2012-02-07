@@ -8,8 +8,8 @@
     <ProjectGuid>{964ED152-44F7-4742-8D17-0C9A67172EEF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Invoices.Economic.Api</RootNamespace>
-    <AssemblyName>Invoices.Economic.Api</AssemblyName>
+    <RootNamespace>Invoices.Api</RootNamespace>
+    <AssemblyName>Invoices.Api</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

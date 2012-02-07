@@ -33,6 +33,8 @@ namespace Invoices.Controllers
         [HttpPost]
         public ActionResult Submit(Invoice model)
         {
+            //Didn't manged to implement standard validation for Lines
+            //that's why employed explicit validation
             if (ModelState.IsValidField("CustomerId") && Invoice.Lines.Count() > 0)
             {
                 try

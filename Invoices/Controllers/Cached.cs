@@ -3,7 +3,7 @@ using Invoices.Models;
 
 namespace Invoices.Controllers
 {
-    public sealed class Cached<T> where T: class
+    internal sealed class Cached<T> where T: class
     {
         private readonly Func<ICache> _cacheAccessor;
         private readonly Func<T> _factory;

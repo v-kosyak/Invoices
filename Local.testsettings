@@ -15,8 +15,8 @@
           <Configuration>
             <CodeCoverage xmlns="">
               <Regular>
-                <CodeCoverageItem binaryFile="Invoices.Api\bin\Debug\Invoices.Api.dll" pdbFile="Invoices.Api\bin\Debug\Invoices.Api.pdb" instrumentInPlace="true" />
                 <CodeCoverageItem binaryFile="Invoices.Models\bin\Debug\Invoices.Models.dll" pdbFile="Invoices.Models\bin\Debug\Invoices.Models.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Invoices.Economic.Api\bin\Debug\Invoices.Api.dll" pdbFile="Invoices.Economic.Api\bin\Debug\Invoices.Api.pdb" instrumentInPlace="true" />
               </Regular>
               <AspNet>
                 <AspNetCodeCoverageItem id="5b777364-85ea-4fdf-8963-a3aa33e49fc9" name="Invoices" applicationRoot="/" url="http://localhost:0/" />

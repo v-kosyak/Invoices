@@ -5,7 +5,7 @@ using Invoices.Models;
 
 namespace Invoices.Controllers
 {
-    [HandleError(View = "Exception")]
+    [HandleError]
     [Authorize]
     public abstract class InvoicesBaseController : Controller
     {
@@ -27,6 +27,17 @@ namespace Invoices.Controllers
         public ICache Cache { get; set; }
         public IAuthenticationService AuthenticationService { get; set; }
         public IRepository Repository { get; set; }
+        public Invoice Invoice
+        {
+            get
+            {
+                return _cachedInvoice.Value;
+            }
+            set
+            {
+                _cachedInvoice.Value = value;
+            }
+        }
 
         protected InvoicesBaseController()
         {
@@ -39,7 +50,10 @@ namespace Invoices.Controllers
         {
             base.Initialize(requestContext);
             if (AuthenticationService == null) { AuthenticationService = new AuthenticationService(); }
-            if (Repository == null) { Repository = new Api.Facade(AuthenticationService); }
+            if (Repository == null)
+            {
+                Repository = new Api.Facade {Authentication = AuthenticationService};
+            }
             if (Cache == null) { Cache = new HttpSessionStateCache(Session); }
         }
 
@@ -47,17 +61,6 @@ namespace Invoices.Controllers
         {
             _cachedInvoice.Clear();
             _cachedProducts.Clear();
-        }
-
-        public Invoice Invoice
-        {
-            get { 
-                return _cachedInvoice.Value;
-            }
-            set
-            {
-                _cachedInvoice.Value = value;
-            }
         }
     }
 }

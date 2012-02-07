@@ -11,7 +11,6 @@ namespace Invoices.Api
     public class Facade: IMembershipService, IRepository
     {
         private ISession _session;
-        private readonly IAuthenticationService _authenticationService;
 
         private ISession _Session
         {
@@ -29,25 +28,23 @@ namespace Invoices.Api
         { 
             get
             {
-                try
-                {
-                    _Session.Connect(Properties.Settings.Default.ProjectId, _authenticationService.UserName,
-                                     _authenticationService.Password);
-                }
-                catch(Exception e)
-                {
-                    throw new AuthenticationException(e.Message, e);
-                }
+                if (Authentication != null)
+                    try
+                    {
+                        _Session.Connect(Properties.Settings.Default.ProjectId, Authentication.UserName,
+                                         Authentication.Password);
+                    }
+                    catch(Exception e)
+                    {
+                        throw new AuthenticationException(e.Message, e);
+                    }
                 
-                return _session;
+                return _Session;
             }
             set { _session = value; }
         }
 
-        public Facade(IAuthenticationService authenticationService = null)
-        {
-            _authenticationService = authenticationService;
-        }
+        public IAuthenticationService Authentication { get; set; }
 
         public bool ValidateUser(string userName, string password)
         {
@@ -78,7 +75,6 @@ namespace Invoices.Api
                                        };
                 }
         }
-
 
         public IEnumerable<Product> GetAllProducts()
         {

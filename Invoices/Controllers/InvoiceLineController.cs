@@ -16,6 +16,7 @@ namespace Invoices.Controllers
                     return CachedProducts;
                 else
                 {
+                    // Exclude products already contained in Invoice
                     var exceptions = Invoice.Lines.Select(line => line.ProductId);
                     return CachedProducts.Where(p => !exceptions.Contains(p.Number));
                 }
