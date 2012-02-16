@@ -33,7 +33,7 @@ namespace Invoices
             if (Server.GetLastError() is System.Security.Authentication.AuthenticationException)
             {
                 Server.ClearError();
-                Response.Redirect("/Account/LogOff");
+                Response.Redirect("~/Account/LogOff");
             }
         }
     }

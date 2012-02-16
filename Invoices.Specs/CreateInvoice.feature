@@ -7,4 +7,4 @@ Scenario: Select Customer
 	Given I am authorized
 	And I have selected customer with id=101
 	Then customer with id=101 is selected
-	And addrees is address
+	And customer address is Gartnergade 12

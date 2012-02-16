@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Then("customer with id=101 is selected");
 #line 10
- testRunner.And("addrees is address");
+ testRunner.And("customer address is Gartnergade 12");
 #line hidden
             this.ScenarioCleanup();
         }
