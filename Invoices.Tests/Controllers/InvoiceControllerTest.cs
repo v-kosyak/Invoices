@@ -36,7 +36,7 @@ namespace Invoices.Tests.Controllers
             //Act
             var actual = sut.Create() as ViewResult;
 
-            //Arrange
+            //Assert
             Assert.IsNotNull(actual);
 
             var customerSelectList = actual.ViewData["Customers"] as IEnumerable<SelectListItem>;
@@ -57,10 +57,9 @@ namespace Invoices.Tests.Controllers
             //Act
             var actual = sut.Create() as ViewResult;
 
-            //Arrange
-            Assert.IsNotNull(actual);
-            
             //Assert
+            Assert.IsNotNull(actual);
+
             var customerSelectList = actual.ViewData["Customers"] as IEnumerable<SelectListItem>;
             Assert.IsNotNull(customerSelectList);
 

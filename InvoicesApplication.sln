@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoices.Api.Tests", "Invoices.Economic.Tests\Invoices.Api.Tests.csproj", "{861E41AB-F334-42F9-85B3-0837C9817578}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoices.Specs", "Invoices.Specs\Invoices.Specs.csproj", "{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = InvoicesApplication.vsmdi
@@ -81,6 +83,16 @@ Global
 		{861E41AB-F334-42F9-85B3-0837C9817578}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{861E41AB-F334-42F9-85B3-0837C9817578}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{861E41AB-F334-42F9-85B3-0837C9817578}.Release|x86.ActiveCfg = Release|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D8E18A9C-D9FF-4891-BE1F-54E4884B45B4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
