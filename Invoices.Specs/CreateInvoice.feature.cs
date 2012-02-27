@@ -74,16 +74,17 @@ namespace Invoices.Specs
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Invoice Creation")]
         public virtual void SelectCustomer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select Customer", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select Customer", new string[] {
+                        "closes_browser_afterwards"});
 #line 7
- testRunner.Given("I am authorized");
+this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.And("I have selected customer with id=101");
+ testRunner.Given("I am authorized");
 #line 9
- testRunner.Then("customer with id=101 is selected");
+ testRunner.And("I have selected customer with id=101");
 #line 10
+ testRunner.Then("customer with id=101 is selected");
+#line 11
  testRunner.And("customer address is Gartnergade 12");
 #line hidden
             this.ScenarioCleanup();

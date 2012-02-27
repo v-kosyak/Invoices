@@ -3,6 +3,7 @@
 	As user
 	I want to be able to specify invoice details, submit and book an invoice
 
+@closes_browser_afterwards
 Scenario: Select Customer
 	Given I am authorized
 	And I have selected customer with id=101

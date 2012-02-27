@@ -12,6 +12,12 @@ namespace Invoices.Specs
             get { return Properties.Settings.Default; }
         }
 
+        [AfterScenario("closes_browser_afterwards")]
+        public void CloseBrowserAfterScenario()
+        {
+            WebBrowser.Current.Close();
+        }
+
         [Given(@"I am authorized")]
         public void GivenIAmAuthorized()
         {
